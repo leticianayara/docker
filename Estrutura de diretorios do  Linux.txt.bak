@@ -1,0 +1,66 @@
+1. / – Raiz
+	Cada arquivo e diretório começa no diretório raiz.
+	Somente o usuário root tem privilégio de escrita neste diretório.
+	Observe que /root é o diretório inicial do usuário root, que não é o mesmo que /.
+	
+2. /bin – Binários do usuário
+	Contém executáveis binários.
+	Comandos comuns do Linux que você precisa usar em modos de usuário único estão localizados neste diretório.
+	Os comandos usados por todos os usuários do sistema estão localizados aqui.
+	Por exemplo: ps, ls, ping, grep, cp.
+	
+3. /sbin – Binários do sistema
+	Assim como /bin, /sbin também contém executáveis binários.
+	Mas os comandos do Linux localizados neste diretório são usados normalmente pelo administrador do sistema, para fins de manutenção do sistema.
+	Por exemplo: iptables, reinicialização, fdisk, ifconfig, swapon
+	´
+4. /etc – Arquivos de configuração
+	Contém arquivos de configuração necessários para todos os programas.
+	Ele também contém scripts de shell de inicialização e desligamento usados para iniciar/parar programas individuais.
+	Por exemplo: /etc/resolv.conf, /etc/logrotate.conf
+	
+5. /dev – Arquivos de dispositivo
+Contém arquivos de dispositivo.
+Isso inclui dispositivos terminais, USB ou qualquer dispositivo conectado ao sistema.
+Por exemplo: /dev/tty1, /dev/usbmon0
+6. /proc – Informações do Processo
+Contém informações sobre o processo do sistema.
+Este é um pseudo sistema de arquivos que contém informações sobre o processo em execução. Por exemplo: o diretório /proc/{pid} contém informações sobre o processo com aquele pid em particular.
+Este é um sistema de arquivos virtual com informações de texto sobre recursos do sistema. Por exemplo: /proc/uptime
+7. /var – Arquivos de variáveis
+var significa arquivos variáveis.
+O conteúdo dos arquivos que devem crescer pode ser encontrado neste diretório.
+Isso inclui — arquivos de log do sistema (/var/log); pacotes e arquivos de banco de dados (/var/lib); e-mails (/var/mail); filas de impressão (/var/spool); arquivos de bloqueio (/var/lock); arquivos temporários necessários durante as reinicializações (/var/tmp);
+8. /tmp – Arquivos Temporários
+Diretório que contém arquivos temporários criados pelo sistema e pelos usuários.
+Os arquivos neste diretório são excluídos quando o sistema é reinicializado.
+9. /usr – Programas do usuário
+Contém binários, bibliotecas, documentação e código-fonte para programas de segundo nível.
+/usr/bin contém arquivos binários para programas de usuário. Se você não encontrar um binário de usuário em /bin, procure em /usr/bin. Por exemplo: at, awk, cc, less, scp
+/usr/sbin contém arquivos binários para administradores de sistema. Se você não encontrar um binário de sistema em /sbin, procure em /usr/sbin. Por exemplo: atd, cron, sshd, useradd, userdel
+/usr/lib contém bibliotecas para /usr/bin e /usr/sbin
+/usr/local contém programas de usuários que você instala a partir da fonte. Por exemplo, quando você instala o apache a partir da fonte, ele vai para /usr/local/apache2
+10. /home – Diretórios Home
+Diretórios pessoais para todos os usuários armazenarem seus arquivos pessoais.
+Por exemplo: /home/john, /home/nikita
+11. /boot – Arquivos do carregador de inicialização
+Contém arquivos relacionados ao carregador de inicialização.
+Os arquivos initrd, vmlinux e grub do kernel estão localizados em /boot
+Por exemplo: initrd.img-2.6.32-24-generic, vmlinuz-2.6.32-24-generic
+12. /lib – Bibliotecas do Sistema
+Contém arquivos de biblioteca que suportam os binários localizados em /bin e /sbin
+Os nomes dos arquivos da biblioteca são ld* ou lib*.so.*
+Por exemplo: ld-2.11.1.so, libncurses.so.5.7
+13. /opt – Aplicativos complementares opcionais
+opt significa opcional.
+Contém aplicativos complementares de fornecedores individuais.
+Os aplicativos complementares devem ser instalados no subdiretório /opt/ ou /opt/.
+14. /mnt – Diretório de montagem
+Diretório de montagem temporário onde os administradores de sistemas podem montar sistemas de arquivos.
+15. /media – Dispositivos de mídia removíveis
+Diretório de montagem temporário para dispositivos removíveis.
+Por exemplo, /media/cdrom para CD-ROM; /media/floppy para unidades de disquete; /media/cdrecorder para gravador de CD
+16. /srv – Dados de serviço
+srv significa serviço.
+Contém dados relacionados a serviços específicos do servidor.
+Por exemplo, /srv/cvs contém dados relacionados ao CVS.

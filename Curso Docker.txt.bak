@@ -96,5 +96,4 @@ less <nome do arquivo>.<tipo do arquivo> - visualizar o arquivo grande por parte
 cat <nome do arquivo>.<tipo do arquivo> > <novo nome do arquivo.<novo tip do arquivo> - copiando o arquivo dentro de um novo
 cat <nome do arquivo>.<tipo do arquivo> <nome do arquivo>.<tipo do arquivo> > <novo nome do arquivo.<novo tip do arquivo> - concatena os arquivos dentro de um novo
 grep <qq coisa> <nome do arquivo>.<tipo do arquivo> <nome do arquivo>.<tipo do arquivo> - encontre qq coisa nos arquivos
-grep <qq coisa> <parte do nome do arquivo>* - encontre qq coisa em qq arquivo que comece com parte do nome
-grep -i -r <qq coisa> . - procura qq coisa dentro de todos os arquivos do diretorio
+grep <qq coisa> <parte do nome do arquivo>* - encontre qq coisa em qq arquivo
