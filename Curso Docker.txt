@@ -98,3 +98,153 @@ cat <nome do arquivo>.<tipo do arquivo> <nome do arquivo>.<tipo do arquivo> > <n
 grep <qq coisa> <nome do arquivo>.<tipo do arquivo> <nome do arquivo>.<tipo do arquivo> - encontre qq coisa nos arquivos
 grep <qq coisa> <parte do nome do arquivo>* - encontre qq coisa em qq arquivo que comece com parte do nome
 grep -i -r <qq coisa> . - procura qq coisa dentro de todos os arquivos do diretorio
+find - lista os arquivos ocultos ou não
+find <nome do diretorio> - procura por diretório
+find -type (d/f) - procura diretórios (d) or arquivos(f)
+find -type f -name <nome do arquivo>.<tipo do arquivo> - procura pelo arquivo especifico
+find -type f -name <part o nome>* - procura  parte do nome dos arquivos e lista-o
+
+<comando 1> ; <comando 2> ; <comando 3> - sempre vai chamar todos os comandos
+<comando 1> && <comando 2> && <comando 3> - sempre vai chamar todos os comandos na ordem em que foi passado
+
+ps - lista os processos
+
+//processos do Linux
+sleep <segundos> - adormece por n segundos
+sleep <segundos> & - adormece em background por n segundos
+kill <id do processo> - mata o processos
+
+//usuario linux
+useradd -m <nome do usuario> - criando um usuario
+usermod - modifica o usuario
+userdel <nome do usuario> - deleta o usuario
+
+docker exec -it -u <nome do usuario> <id do container> bash - faz login com o usuario novo do ubuntu 
+
+//grupos lista
+groups <nome do usuario> - lista em quais grupos esta o usuario
+groupadd <nome do grupo> - cria um grupos
+usermod -G <nome do grupo> <nome do usuario> - adiciona um usuario em um grupo
+
+//permissoes
+
+-rw-r--r--
+		 1ª 	   2ª	   3ª
+(d/-)   xxx 	  xxx 	  xxx
+      r-read	r-read	r-read
+	  w-write	w-write	w-wirte
+	  x-exec	e-exec	x-exec
+	  (user)	(group)	(everyone)
+	  
+chmod <sessao do arquivo>+<permissao dada> <nome do arquivo>.<tipo do arquvo> - dar uma permissao em um arquivo
+
+
+
+//Docker Image x Docker Container
+
+///Imagem
+Possui um app com os segunites requisitos:
+	- OS
+	- Libraries
+	- Arquivos app
+	- Variaveis de ambiente
+	
+
+///Containers
+	- VM (isolado)
+	- start/stop
+	- processo
+	
+	 converto			  criar
+APP -----------> Imagem ---------> Container
+	          (Dockerfile)			rodar a Imagem
+										 run (carregar)
+										  App
+										  
+//Dockerfile
+		FROM node:lts-alpine
+		WORKDIR /app
+		COPY . .
+		RUN yarn install --production
+		CMD ["node", "src/index.js"]
+		EXPOSE 3000
+
+O Dockerfile tem que ser 
+FROM - qual imagem ele vai carregar e qual plataforma
+WORKDIR - diretorio a partir onde ele vai trabalhar
+COPY/ADD - copiar ou adicionar todos os arquivos para a imagem
+RUN - colocar a aplicação em funcionamento (quando a imagem esta construindo)
+ENV - configurações do ambiente
+EXPOSE - escolhe a porta que va rodar a aplicação
+USER - usuário que vai executar essa aplicação
+CMD / ENTRYPOINT - rodar comandos necessários para aplicação (quando a imagem ja esta construida)
+
+//Tabela completa Dockerfile
+ADD - Adicione arquivos e diretórios locais compactados ou remotos.
+ARG - Use variáveis de tempo de compilação.
+CMD - Especifique comandos padrão. (quando a imagem ja esta construida)
+COPY - Copie arquivos e diretórios.
+ENTRYPOINT - Especifique o executável padrão.
+ENV - Defina variáveis de ambiente.
+EXPOSE - Descreva em quais portas seu aplicativo está escutando.
+FROM - Crie um novo estágio de construção a partir de uma imagem base.
+HEALTHCHECK - Verifique a integridade de um contêiner na inicialização.
+LABEL - Adicione metadados a uma imagem.
+MAINTAINER - Especifique o autor de uma imagem.
+ONBUILD - Especifique instruções para quando a imagem é usada em uma compilação.
+RUN - Executar comandos de construção. (quando a imagem esta construindo)
+SHELL - Defina o shell padrão de uma imagem.
+STOPSIGNAL - Especifique o sinal de chamada do sistema para sair de um contêiner.
+USER - Defina o ID do usuário e do grupo.
+VOLUME - Crie montagens de volume.
+WORKDIR	Alterar diretório de trabalho.
+
+///comandos docker images
+docker images - lista as imagens ativos
+docker images -l - lista as imagens todas
+docker build -t <nome da imagem> . - monta a imagem
+docker run -it <nome da imagem> sh - roda a imagem
+docker run -dp <porta em que ela esta associada>:<porta que a app usa> <nome da imagem> - determina a porta onde ela vai rodar
+docker buil -t <nome da imagem>:<versao da imagem> . - roda a imagem com versao
+docker image remove/rm <nome da imagem>:<versao da imagem> - remove uma imagem
+docker image tag <nome da imagem antigo>:<versao da imagem antigo> <nome da imagem novo>:<versao da imagem novo> - altera a versao de uma imagem
+docler image tag <id da imagem> <path>/<nomeda imagem>:<versao da imagem>
+docker login - fazendo login no docker
+docker push <nome do repositorio>/<nome da imagem>:<versao da imagem> - enviando pro repositorio
+docker image save -o <nome do arquivo>.<tipo do arquivo> <nome da imagem>:<versao da imagem> - gerando um arquivo compactado a partir da imagem
+docker image load -i <nome do arquivo>.<tipo do arquivo> - faz o upload do arquivo compactado e coloca dentro da imagem
+
+
+//docker container
+docker ps - lista os containers ativos
+docker ps -a - lista os container inativdos
+docker run <nome da imagem>:<versao da imagem> - roda a imagem
+docker run -d <nome da imagem>:<versao da imagem> - roda a imagem em background
+docker run -d --name <nome do container> <nome da imagem>:<versao da imagem> - (re)nomeando o container
+
+//Logs
+docker logs <opção> <id container> - mostra o logs existentes
+	docker logs -f <id container> - mostra sempre o mais atual
+	docker logs -n <id container> <quantidade de linhas> - mostra os logs por partes (de cima pra baixo)
+	docker logs -t <id container> - mostra os logs com  data/hora/minuto/segundo/milesimo de segundo
+
+///Docker ports
+docker run -dp <porta de que deseja usar>:<porta da app> --name <nome do container> <nome da imagem>:<versao da imagem>
+
+docker exec <nome do contaber> ls - arquivos e diretorios que estao no container
+docker stop <nome do container/id do container> - parar o container
+docker start <nome do container/id do container> - volltar com o container
+docker rm <nome container> - remover o container
+docker rm -f <nome container> - remove de forma forçada
+
+docker volume create <nome do volume> - criando volume
+docker voulme inspect <nome do volume> - verificando volume
+docker run -dp <porta host>:<porta app> --name <nome do container> -v <nome do volune>:<nome do diretorio onde ele vai ficar> <nome da imagem>:<versao da imagem> - usando o volume em um novo container
+docker exec -it <nome do container> sh - entranto do modo shell
+echo <conteudo do arquivo> > <nome do arquivo>.<tipo do arquivo> - criando um arquivo
+
+
+docker cp <origem> <destino> - copiando o arquivo de um lugar para outro
+
+ 
+
