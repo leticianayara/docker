@@ -246,5 +246,60 @@ echo <conteudo do arquivo> > <nome do arquivo>.<tipo do arquivo> - criando um ar
 
 docker cp <origem> <destino> - copiando o arquivo de um lugar para outro
 
- 
 
+//Docker Compose
+
+docker version - ver a versao do docker
+docker-compose --version - ver a versão do docker compose
+
+docker image rm <id imagem> - remove uma imagem
+docker container rm <id container> - remove um container
+
+
+docker-compose up - cria os containers
+
+a extensao do arquivo docker-compose é o .yml (linguagem yaml)
+
+docker-compose.yml dados necessarios (tudo dentro dele é em aspas duplas(" "))
+ 
+version: <sua versao>
+
+services:
+	frontend:
+		depend_on:
+			- <de quem eu dependo no arquivo>
+		build:  ./<diretorio >
+		ports:
+			- <numero da porta do host>:<numero da sua porta>
+	backend:
+		depend_on:
+			- <de quem eu dependo no arquivo>
+		build: ./<diretorio>
+		ports:
+			- <numero da porta do host>:<numero da sua porta>
+		environment:
+			DB_URL: <onde esta o banco de dados>
+		command: <onde esta a estrutura de comandos>
+	db:
+		image: <nome do banco de dados>:<versao do banco de dados>
+		ports:
+			- <numero da porta do host>:<numero da sua porta>
+		volumes:
+			- vidly:<caminho onde esta o banco de dados>
+volumes:
+	vidly:
+	
+
+
+docker-compose up --build - ele obriga a criaçao do arquivo
+docker-compose up -d - roda a aplicação
+docker-compose ps - olhar os containers do docker compose
+docker-compose down - para os containers
+
+docker exec -it -u <nome do usuario> <id do container> sh - entrar o container especifico
+ifconfig
+ping <informacao do host>
+
+docker-compose logs - acesso ao logs 
+	docker-compose -f - tudo de novo aparece em tela
+	docker-compose -t - aparece log detalhado
